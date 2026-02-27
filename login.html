@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Login - SoundWave Pro</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!-- Firebase v8 -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
-  <div class="login-box">
-    <h2>SoundWave Pro 🎵</h2>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBS8mb58zcJkb2_Wk8kJG_UQ3sMy7nqle4",
+    authDomain: "soundwave-340a1.firebaseapp.com",
+    projectId: "soundwave-340a1",
+    storageBucket: "soundwave-340a1.appspot.com",
+    messagingSenderId: "1011315891173",
+    appId: "1:1011315891173:web:2f2d4b72c8daf36cbded0c"
+  };
 
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Senha">
+  firebase.initializeApp(firebaseConfig);
+</script>
 
-    <button onclick="login()">Entrar</button>
-    <button onclick="register()">Criar Conta</button>
-  </div>
-
-  <script type="module" src="app.js"></script>
-</body>
-</html>
+<script src="app.js"></script>
