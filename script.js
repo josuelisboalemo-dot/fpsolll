@@ -1,60 +1,63 @@
-// Sons de tensão (Drone de fundo e um sussurro)
-const somAmbiente = new Audio('https://www.soundjay.com/ambient/sounds/creepy-background-01.mp3');
-const somSusto = new Audio('https://www.myinstants.com/media/sounds/whisper-look-behind-you.mp3');
+// Configuração de sons e links
+const musicaPaz = new Audio('https://www.solucoesdf.com.br/som/alegre.mp3'); 
+const somTerror = new Audio('https://www.myinstants.com/media/sounds/creepy-noise.mp3');
+const linkYoutubeTerror = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Substitua por um link de vídeo de terror real
 
-let faseTerror = false;
+window.onload = () => {
+    musicaPaz.play();
+    musicaPaz.loop = true;
+};
 
-function iniciarTerrorReal() {
-    if (faseTerror) return;
-    faseTerror = true;
+function iniciarEvento() {
+    // 1. TELA FICA PRETA DO NADA
+    document.body.innerHTML = `<div id='preto' style='background:black; width:100vw; height:100vh; display:flex; align-items:center; justify-content:center;'>
+        <img src='https://i.imgur.com/83p1H2t.gif' id='figura' style='display:none; width:300px;'>
+        <h2 id='texto-culto' style='color:red; display:none; font-family:serif;'>Sanguis bibimus, corpus edimus...</h2>
+    </div>`;
+    musicaPaz.pause();
 
-    // Toca o som de tensão bem baixinho e vai aumentando
-    somAmbiente.loop = true;
-    somAmbiente.volume = 0.1;
-    somAmbiente.play();
-
-    // 1. O site começa a "piscar" em preto e branco
-    document.body.style.animation = "piscar 0.2s infinite";
-
-    // 2. Mensagem que parece que o site sabe quem é você
+    // 2. APARECE A FIGURA E O TEXTO DE CULTO (Após 2 segundos no preto)
     setTimeout(() => {
-        document.getElementById("frase-do-dia").innerHTML = "Eu sei que você está sozinho no quarto...";
-        document.getElementById("frase-do-dia").style.color = "red";
-        document.getElementById("frase-do-dia").style.fontSize = "30px";
-    }, 3000);
+        document.getElementById('figura').style.display = 'block';
+        document.getElementById('texto-culto').style.display = 'block';
+        somTerror.play();
+    }, 2000);
 
-    // 3. O susto psicológico (O som de "Olhe para trás")
-    setTimeout(() => {
-        somSusto.play();
-        document.body.style.filter = "invert(100%)"; // Inverte as cores da tela (fica bizarro)
-    }, 7000);
-
-    // 4. A Corrente Amaldiçoada (Aparece um formulário falso)
+    // 3. VOLTA AO "NORMAL" MAS PERTURBADO (Após 6 segundos)
     setTimeout(() => {
         document.body.innerHTML = `
-            <div style="background:black; color:red; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-                <h1>ESTA É A CORRENTE DE MARIE LAVEAU</h1>
-                <p>Você leu o que não devia. Agora o seu IP foi marcado.</p>
-                <p>Envie este link para 10 pessoas ou as luzes da sua casa não acenderão amanhã.</p>
-                <div style="border: 1px solid red; padding: 20px;">
-                    <p>TEMPO RESTANTE: <span id="timer">60</span>s</p>
-                </div>
-                <img src="https://i.imgur.com/83p1H2t.gif" width="300"> 
+            <div style="background:#222; color:#eee; height:100vh; text-align:center; padding-top:50px;">
+                <h1 style="color:red;">VOCÊ NÃO É BEM-VINDO</h1>
+                <p>Nós estamos em... eu estou aí...</p>
+                <img src="https://cursinhoparamedicina.com.br/wp-content/uploads/2016/10/smile.png" style="filter: invert(100%); width:100px;">
+                <br><br>
+                <button onclick="faseFinal()">CLIQUE PARA SAIR</button>
             </div>
         `;
-        iniciarContagem();
-    }, 12000);
+    }, 8000);
 }
 
-function iniciarContagem() {
-    let tempo = 60;
-    setInterval(() => {
-        tempo--;
-        document.getElementById("timer").innerText = tempo;
-        if(tempo <= 0) {
-            // O fechamento fatal que você pediu
-            document.body.innerHTML = "<h1 style='color:white; text-align:center;'>CONEXÃO PERDIDA... ELES CHEGARAM.</h1>";
-            setTimeout(() => { window.close(); }, 2000);
-        }
-    }, 1000);
+function faseFinal() {
+    // 4. ABRE O YOUTUBE DE TERROR
+    window.open(linkYoutubeTerror, '_blank');
+
+    // 5. MENSAGEM FINAL "ATRÁS DE VOCÊ"
+    document.body.innerHTML = `
+        <div style="background:black; color:white; height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column;">
+            <h1 style="font-size:50px; letter-spacing: 15px;">EU ESTOU ATRÁS DE VOCÊ</h1>
+            <p>Não olhe.</p>
+        </div>
+    `;
+
+    // 6. FECHA TUDO
+    setTimeout(() => {
+        window.close();
+        // Redirecionamento caso o browser bloqueie o window.close
+        window.location.href = "about:blank";
+    }, 4000);
 }
+
+// Inicia o processo quando o usuário clica em qualquer lugar (requisito do navegador para tocar áudio)
+document.body.onclick = () => {
+    setTimeout(iniciarEvento, 5000); // Começa 5 segundos depois que ele entra/clica
+};
