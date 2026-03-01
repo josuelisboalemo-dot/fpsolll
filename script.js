@@ -1,63 +1,37 @@
-// Configuração de sons e links
-const musicaPaz = new Audio('https://www.solucoesdf.com.br/som/alegre.mp3'); 
-const somTerror = new Audio('https://www.myinstants.com/media/sounds/creepy-noise.mp3');
-const linkYoutubeTerror = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Substitua por um link de vídeo de terror real
+const musicaPaz = new Audio('https://www.solucoesdf.com.br/som/alegre.mp3');
+const somTerror = new Audio('https://www.myinstants.com/media/sounds/creepy-ritual-chant.mp3'); // Simulando áudio local
 
-window.onload = () => {
+function iniciarTudo() {
+    document.getElementById('inicio').style.display = 'none';
+    document.getElementById('site-fake').style.display = 'block';
     musicaPaz.play();
-    musicaPaz.loop = true;
-};
 
-function iniciarEvento() {
-    // 1. TELA FICA PRETA DO NADA
-    document.body.innerHTML = `<div id='preto' style='background:black; width:100vw; height:100vh; display:flex; align-items:center; justify-content:center;'>
-        <img src='https://i.imgur.com/83p1H2t.gif' id='figura' style='display:none; width:300px;'>
-        <h2 id='texto-culto' style='color:red; display:none; font-family:serif;'>Sanguis bibimus, corpus edimus...</h2>
-    </div>`;
+    // 5 Segundos de paz antes do caos
+    setTimeout(faseTerror, 5000);
+}
+
+function faseTerror() {
     musicaPaz.pause();
+    document.getElementById('site-fake').style.display = 'none';
+    document.getElementById('horror-overlay').style.display = 'flex';
+    
+    // Inicia o texto de culto em latim
+    const ritual = document.getElementById('texto-ritual');
+    ritual.innerText = "SANGUIS BIBIMUS... CORPUS EDIMUS... RIDEAT CANIS...";
+    
+    // Toca a música de terror (Ritual)
+    somTerror.play();
 
-    // 2. APARECE A FIGURA E O TEXTO DE CULTO (Após 2 segundos no preto)
+    // Depois de 7 segundos encarando o Smile Dog, abre o YouTube e fecha
     setTimeout(() => {
-        document.getElementById('figura').style.display = 'block';
-        document.getElementById('texto-culto').style.display = 'block';
-        somTerror.play();
-    }, 2000);
-
-    // 3. VOLTA AO "NORMAL" MAS PERTURBADO (Após 6 segundos)
-    setTimeout(() => {
-        document.body.innerHTML = `
-            <div style="background:#222; color:#eee; height:100vh; text-align:center; padding-top:50px;">
-                <h1 style="color:red;">VOCÊ NÃO É BEM-VINDO</h1>
-                <p>Nós estamos em... eu estou aí...</p>
-                <img src="https://cursinhoparamedicina.com.br/wp-content/uploads/2016/10/smile.png" style="filter: invert(100%); width:100px;">
-                <br><br>
-                <button onclick="faseFinal()">CLIQUE PARA SAIR</button>
-            </div>
-        `;
-    }, 8000);
+        // Link do YouTube: Creepy Ritual Chant / Smile Dog Video
+        window.open("http://www.youtube.com/watch?v=NIu-B51_rp0", "_blank");
+        
+        document.body.innerHTML = "<h1 style='color:white; background:black; height:100vh; display:flex; align-items:center; justify-content:center;'>EU ESTOU ATRÁS DE VOCÊ.</h1>";
+        
+        setTimeout(() => {
+            window.close();
+            window.location.href = "about:blank";
+        }, 3000);
+    }, 7000);
 }
-
-function faseFinal() {
-    // 4. ABRE O YOUTUBE DE TERROR
-    window.open(linkYoutubeTerror, '_blank');
-
-    // 5. MENSAGEM FINAL "ATRÁS DE VOCÊ"
-    document.body.innerHTML = `
-        <div style="background:black; color:white; height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column;">
-            <h1 style="font-size:50px; letter-spacing: 15px;">EU ESTOU ATRÁS DE VOCÊ</h1>
-            <p>Não olhe.</p>
-        </div>
-    `;
-
-    // 6. FECHA TUDO
-    setTimeout(() => {
-        window.close();
-        // Redirecionamento caso o browser bloqueie o window.close
-        window.location.href = "about:blank";
-    }, 4000);
-}
-
-// Inicia o processo quando o usuário clica em qualquer lugar (requisito do navegador para tocar áudio)
-document.body.onclick = () => {
-    setTimeout(iniciarEvento, 5000); // Começa 5 segundos depois que ele entra/clica
-};
