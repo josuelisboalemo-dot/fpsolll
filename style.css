@@ -1,0 +1,84 @@
+/* Reset básico */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+  background: #0f2027;
+}
+
+/* Tela inicial */
+#introScreen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+}
+
+.introContent h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3em;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px #fff;
+}
+
+.introContent p {
+  font-size: 1.2em;
+  margin-bottom: 40px;
+  max-width: 500px;
+}
+
+#enterBtn {
+  padding: 15px 40px;
+  font-size: 1.2em;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s all;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+#enterBtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Fundo animado */
+.bgAnimation {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: moveBg 20s linear infinite;
+  z-index: 0;
+}
+
+@keyframes moveBg { from {transform: translate(0,0);} to {transform: translate(-100px, -100px);} }
+
+/* Conteúdo principal */
+.hidden { display: none; }
+
+header {
+  text-align: center;
+  padding: 20px;
+  background: #203a43;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#timeline { margin: 20px; text-align: center; }
+#yearLabel { margin-left: 10px; font-weight: bold; font-size: 1.2em; }
+
+#map { margin: 0 auto; border: 3px solid #203a43; border-radius: 15px; }
