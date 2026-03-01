@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechGamer Hacker</title>
+    <title>TechGamer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <div class="logo">⚡ TechGamer</div>
+        <div class="logo">TechGamer</div>
         <nav>
             <a href="#home">Início</a>
             <a href="#sobre">Sobre</a>
@@ -19,30 +19,35 @@
     </header>
 
     <section id="home" class="hero">
-        <h1>Bem-vindo ao Futuro</h1>
-        <p>Design moderno, tecnologia e inovação.</p>
-        <button>Começar</button>
+        <div class="hero-text">
+            <h1>Bem-vindo à TechGamer</h1>
+            <p>Transformamos ideias em experiências digitais modernas e profissionais.</p>
+            <a href="#contato" class="btn">Entre em contato</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/400x300.png?text=Imagem+Profissional" alt="Imagem de destaque">
+        </div>
     </section>
 
     <section id="sobre" class="section">
         <h2>Sobre Nós</h2>
-        <p>Somos especialistas em criar experiências digitais incríveis com design moderno e tecnologia de ponta.</p>
+        <p>Somos especialistas em desenvolvimento web, design moderno e soluções digitais que conectam pessoas e tecnologia.</p>
     </section>
 
     <section id="servicos" class="section cards">
         <h2>Nossos Serviços</h2>
         <div class="card-container">
             <div class="card">
-                <h3>💻 Web Design</h3>
-                <p>Sites modernos e responsivos.</p>
+                <h3>Web Design</h3>
+                <p>Sites modernos e responsivos para qualquer dispositivo.</p>
             </div>
             <div class="card">
-                <h3>🎮 UI Gamer</h3>
-                <p>Interfaces com estilo gamer.</p>
+                <h3>UI/UX</h3>
+                <p>Interfaces elegantes e intuitivas, focadas na experiência do usuário.</p>
             </div>
             <div class="card">
-                <h3>⚙️ Sistemas</h3>
-                <p>Soluções personalizadas.</p>
+                <h3>Consultoria</h3>
+                <p>Planejamento digital estratégico para sua empresa ou projeto.</p>
             </div>
         </div>
     </section>
@@ -50,9 +55,9 @@
     <section id="contato" class="section">
         <h2>Contato</h2>
         <form>
-            <input type="text" placeholder="Seu nome">
-            <input type="email" placeholder="Seu email">
-            <textarea placeholder="Sua mensagem"></textarea>
+            <input type="text" placeholder="Seu nome" required>
+            <input type="email" placeholder="Seu email" required>
+            <textarea placeholder="Sua mensagem" required></textarea>
             <button type="submit">Enviar</button>
         </form>
     </section>
@@ -61,128 +66,5 @@
         <p>© 2026 TechGamer - Todos os direitos reservados</p>
     </footer>
 
-    <!-- ===== SCRIPTS ULTRA HACKER ===== -->
-    <script>
-    // ===== FADE-IN DAS SEÇÕES =====
-    const sections = document.querySelectorAll('.section');
-    window.addEventListener('scroll', () => {
-        sections.forEach(sec => {
-            const top = sec.getBoundingClientRect().top;
-            if(top < window.innerHeight - 100){
-                sec.classList.add('show');
-            }
-        });
-    });
-
-    // ===== PARTÍCULAS NEON DE FUNDO =====
-    const canvasParticles = document.createElement('canvas');
-    document.body.appendChild(canvasParticles);
-    canvasParticles.style.position = 'fixed';
-    canvasParticles.style.top = '0';
-    canvasParticles.style.left = '0';
-    canvasParticles.style.width = '100%';
-    canvasParticles.style.height = '100%';
-    canvasParticles.style.zIndex = '-2';
-    canvasParticles.style.pointerEvents = 'none';
-    const ctxP = canvasParticles.getContext('2d');
-
-    let wP, hP;
-    function resizeP() { wP = canvasParticles.width = window.innerWidth; hP = canvasParticles.height = window.innerHeight; }
-    window.addEventListener('resize', resizeP);
-    resizeP();
-
-    const particles = [];
-    for(let i=0;i<120;i++){
-        particles.push({ x: Math.random()*wP, y: Math.random()*hP, r: Math.random()*3+1, dx: (Math.random()-0.5)*0.5, dy: (Math.random()-0.5)*0.5 });
-    }
-
-    function animateParticles(){
-        ctxP.clearRect(0,0,wP,hP);
-        particles.forEach(p=>{
-            p.x += p.dx; p.y += p.dy;
-            if(p.x<0||p.x>wP) p.dx*=-1;
-            if(p.y<0||p.y>hP) p.dy*=-1;
-            ctxP.beginPath();
-            ctxP.arc(p.x,p.y,p.r,0,Math.PI*2);
-            ctxP.fillStyle = '#00f7ff88';
-            ctxP.fill();
-        });
-        requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-
-    // ===== CURSOR NEON COM RASTRO =====
-    const trail = [];
-    const maxTrail = 20;
-    document.addEventListener('mousemove', e=>{
-        trail.push({x:e.clientX, y:e.clientY, alpha:1});
-        if(trail.length>maxTrail) trail.shift();
-    });
-
-    const canvasCursor = document.createElement('canvas');
-    document.body.appendChild(canvasCursor);
-    canvasCursor.style.position = 'fixed';
-    canvasCursor.style.top = '0';
-    canvasCursor.style.left = '0';
-    canvasCursor.style.width = '100%';
-    canvasCursor.style.height = '100%';
-    canvasCursor.style.zIndex = '9999';
-    canvasCursor.style.pointerEvents = 'none';
-    const ctxC = canvasCursor.getContext('2d');
-
-    function drawTrail(){
-        canvasCursor.width = window.innerWidth;
-        canvasCursor.height = window.innerHeight;
-        trail.forEach((p,i)=>{
-            ctxC.beginPath();
-            ctxC.arc(p.x,p.y,5,0,Math.PI*2);
-            ctxC.fillStyle = `rgba(0,255,255,${p.alpha})`;
-            ctxC.fill();
-            p.alpha -= 0.05;
-        });
-        requestAnimationFrame(drawTrail);
-    }
-    drawTrail();
-
-    // ===== MATRIX CAINDO CÓDIGOS =====
-    const canvasMatrix = document.createElement('canvas');
-    document.body.appendChild(canvasMatrix);
-    canvasMatrix.style.position = 'fixed';
-    canvasMatrix.style.top = '0';
-    canvasMatrix.style.left = '0';
-    canvasMatrix.style.width = '100%';
-    canvasMatrix.style.height = '100%';
-    canvasMatrix.style.zIndex = '-3';
-    canvasMatrix.style.pointerEvents = 'none';
-    const ctxM = canvasMatrix.getContext('2d');
-
-    let wM = canvasMatrix.width = window.innerWidth;
-    let hM = canvasMatrix.height = window.innerHeight;
-    let cols = Math.floor(wM/20) + 1;
-    const ypos = Array(cols).fill(0);
-
-    window.addEventListener('resize', ()=>{
-        wM = canvasMatrix.width = window.innerWidth;
-        hM = canvasMatrix.height = window.innerHeight;
-        cols = Math.floor(wM/20)+1;
-        ypos.length = cols;
-        ypos.fill(0);
-    });
-
-    function matrix(){
-        ctxM.fillStyle = 'rgba(0,0,0,0.05)';
-        ctxM.fillRect(0,0,wM,hM);
-        ctxM.fillStyle = '#0ff';
-        ctxM.font = '15pt monospace';
-        for(let i=0;i<ypos.length;i++){
-            const text = String.fromCharCode(33 + Math.random()*94);
-            ctxM.fillText(text,i*20,ypos[i]*20);
-            if(ypos[i]*20 > hM && Math.random() > 0.975) ypos[i]=0;
-            ypos[i]++;
-        }
-        requestAnimationFrame(matrix);
-    }
-    matrix();
-    </script>
 </body>
 </html>
