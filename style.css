@@ -1,114 +1,44 @@
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background: #0f0f1a;
-    color: white;
-    overflow-x: hidden;
-}
-
-/* ===== FUNDO ANIMADO ===== */
-body::before {
-    content: "";
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, #00f7ff33 1px, transparent 1px);
-    background-size: 40px 40px;
-    animation: bgMove 20s linear infinite;
-    z-index: -1;
-}
-
-@keyframes bgMove {
-    0% { transform: translate(0,0); }
-    100% { transform: translate(-200px,-200px); }
-}
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
+html {scroll-behavior: smooth;}
+body {background:#0f0f1a; color:white; overflow-x:hidden;}
 
 /* ===== HEADER GLASS ===== */
-header {
-    backdrop-filter: blur(10px);
-    background: rgba(17,17,17,0.6);
-}
+header {display:flex; justify-content:space-between; align-items:center; padding:20px 50px; background:rgba(17,17,17,0.6); backdrop-filter:blur(10px); position:sticky; top:0;}
+.logo {font-size:22px; font-weight:bold; color:#00f7ff;}
+nav a {color:white; text-decoration:none; margin-left:20px; transition:0.3s;}
+nav a:hover {color:#00f7ff;}
 
-/* ===== TEXTO GLITCH ===== */
-.hero h1 {
-    font-size: 60px;
-    position: relative;
-    animation: glitch 1s infinite;
-}
+/* ===== HERO GLITCH ===== */
+.hero {height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background: linear-gradient(135deg,#0f0f1a,#1f1f3a);}
+.hero h1 {font-size:60px; position:relative; animation: glitch 1s infinite;}
+.hero p {margin:20px 0;}
+.hero button {padding:12px 30px; background:#00f7ff; border:none; border-radius:30px; cursor:pointer; font-weight:bold; position:relative; overflow:hidden; transition:0.3s;}
+.hero button:hover {background:#00c3cc; transform:scale(1.1);}
+.hero button::before {content:""; position:absolute; width:300%; height:300%; background:radial-gradient(circle,#ffffff55 10%,transparent 10%); animation:pulse 2s infinite;}
 
-@keyframes glitch {
-    0% { text-shadow: 2px 2px #00f7ff; }
-    25% { text-shadow: -2px -2px #ff00ff; }
-    50% { text-shadow: 2px -2px #00ff88; }
-    75% { text-shadow: -2px 2px #ff0000; }
-    100% { text-shadow: 2px 2px #00f7ff; }
-}
+@keyframes glitch {0% {text-shadow:2px 2px #00f7ff;}25%{text-shadow:-2px -2px #ff00ff;}50%{text-shadow:2px -2px #00ff88;}75%{text-shadow:-2px 2px #ff0000;}100%{text-shadow:2px 2px #00f7ff;}}
+@keyframes pulse {0%{transform:scale(0.2);opacity:1;}100%{transform:scale(1.5);opacity:0;}}
 
-/* ===== BOTÃO ENERGIA ===== */
-.hero button {
-    position: relative;
-    overflow: hidden;
-}
+/* ===== SECTIONS FADE ===== */
+.section {opacity:0; transform:translateY(50px); transition:0.8s ease; padding:80px 50px; text-align:center;}
+.section.show {opacity:1; transform:translateY(0);}
+.section h2 {margin-bottom:30px; font-size:32px; color:#00f7ff;}
 
-.hero button::before {
-    content: "";
-    position: absolute;
-    width: 300%;
-    height: 300%;
-    background: radial-gradient(circle, #ffffff55 10%, transparent 10%);
-    animation: pulse 2s infinite;
-}
+/* ===== CARDS ===== */
+.cards .card-container {display:flex; justify-content:center; gap:30px; flex-wrap:wrap;}
+.card {position:relative; overflow:hidden; width:250px; padding:30px; border-radius:15px; transition:0.3s;}
+.card::before {content:""; position:absolute; width:150%; height:150%; background:linear-gradient(45deg,#00f7ff,#ff00ff,#00ff88); animation:rotate 4s linear infinite; z-index:0;}
+.card::after {content:""; position:absolute; inset:3px; background:#1a1a2e; border-radius:12px; z-index:1;}
+.card * {position:relative; z-index:2;}
+.card:hover {transform:translateY(-10px);}
 
-@keyframes pulse {
-    0% { transform: scale(0.2); opacity: 1; }
-    100% { transform: scale(1.5); opacity: 0; }
-}
+/* ===== ROTATE CARDS ===== */
+@keyframes rotate {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
 
-/* ===== CARDS COM BORDA ANIMADA ===== */
-.card {
-    position: relative;
-    overflow: hidden;
-}
+/* ===== FORM ===== */
+form {display:flex; flex-direction:column; gap:15px; max-width:400px; margin:auto;}
+form input, form textarea {padding:10px; border:none; border-radius:8px;}
+form button {padding:10px; background:#00f7ff; border:none; border-radius:8px; cursor:pointer; font-weight:bold;}
 
-.card::before {
-    content: "";
-    position: absolute;
-    width: 150%;
-    height: 150%;
-    background: linear-gradient(45deg, #00f7ff, #ff00ff, #00ff88);
-    animation: rotate 4s linear infinite;
-    z-index: 0;
-}
-
-.card::after {
-    content: "";
-    position: absolute;
-    inset: 3px;
-    background: #1a1a2e;
-    border-radius: 12px;
-    z-index: 1;
-}
-
-.card * {
-    position: relative;
-    z-index: 2;
-}
-
-@keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* ===== FADE IN AO SCROLL ===== */
-.section {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: 0.8s ease;
-}
-
-.section.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* ===== FOOTER ===== */
+footer {background:#111; text-align:center; padding:20px; margin-top:40px;}
