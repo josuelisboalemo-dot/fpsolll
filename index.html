@@ -2,30 +2,47 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>✨ Cantinho da Amizade & Luz ✨</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Meu Cantinho de Luz 2004 ✨</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="corpo">
+<body id="corpo-site">
 
-    <audio id="musica" loop src="https://www.solucoesdf.com.br/som/alegre.mp3"></audio>
+    <audio id="musicaPaz" loop>
+        <source src="https://www.solucoesdf.com.br/som/alegre.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="somTerror">
+        <source src="https://www.myinstants.com/media/sounds/creepy-noise.mp3" type="audio/mpeg">
+    </audio>
 
-    <div id="site-container">
+    <div id="loading-screen" onclick="iniciarExperiencia()">
+        <p>CLIQUE EM QUALQUER LUGAR PARA ENTRAR...</p>
+    </div>
+
+    <div id="interface-normal">
         <header>
-            <h1>🌟 Bem-vindo ao meu Cantinho! 🌟</h1>
-            <marquee>Tenha um dia iluminado! Você é especial! ✨</marquee>
+            <marquee scrollamount="5">🌟 VOCÊ É UMA PESSOA ESPECIAL! ESPALHE O BEM! 🌟</marquee>
+            <h1>Bem-vindo ao Portal da Amizade</h1>
         </header>
 
-        <main id="conteudo-principal">
-            <div class="card">
-                <img src="https://cursinhoparamedicina.com.br/wp-content/uploads/2016/10/smile.png" id="emoji-principal" width="100">
-                <p id="frase-do-dia">"A vida é um presente, aproveite cada segundo!"</p>
-                <button onclick="mudarFrase()" id="btn-interagir">Clique para uma benção</button>
+        <main>
+            <div class="moldura-foto">
+                <img src="https://cursinhoparamedicina.com.br/wp-content/uploads/2016/10/smile.png" id="img-principal" alt="Smile">
             </div>
             
-            <div id="contador">
-                Você é o visitante nº: <span id="num-visitante">005432</span>
+            <div class="painel-texto">
+                <p id="texto-principal">"O sorriso é a janela da alma. Abra a sua hoje!"</p>
+                <button id="btn-sorte" onclick="mudarTexto()">Clique para ver sua sorte!</button>
+            </div>
+
+            <div class="contador-visitas">
+                Visitante nº: <span id="contador">000.452</span>
             </div>
         </main>
+
+        <footer>
+            <p>© 2004 - Todos os direitos reservados à Luz e Paz</p>
+        </footer>
     </div>
 
     <script src="script.js"></script>
