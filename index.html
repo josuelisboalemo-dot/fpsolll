@@ -2,47 +2,25 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ Meu Cantinho de Luz 2004 ✨</title>
+    <title>✨ Cantinho da Amizade ✨</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="corpo-site">
+<body id="main-body">
 
-    <audio id="musicaPaz" loop>
-        <source src="https://www.solucoesdf.com.br/som/alegre.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="somTerror">
-        <source src="https://www.myinstants.com/media/sounds/creepy-noise.mp3" type="audio/mpeg">
-    </audio>
-
-    <div id="loading-screen" onclick="iniciarExperiencia()">
-        <p>CLIQUE EM QUALQUER LUGAR PARA ENTRAR...</p>
+    <div id="inicio">
+        <h1>BEM-VINDO AO PORTAL DA LUZ</h1>
+        <button onclick="iniciarTudo()">ENTRAR NO SITE</button>
     </div>
 
-    <div id="interface-normal">
-        <header>
-            <marquee scrollamount="5">🌟 VOCÊ É UMA PESSOA ESPECIAL! ESPALHE O BEM! 🌟</marquee>
-            <h1>Bem-vindo ao Portal da Amizade</h1>
-        </header>
+    <div id="site-fake" style="display:none;">
+        <marquee>Deus te abençoe! Você é especial! 🌟</marquee>
+        <h2>Mensagens Positivas do Dia</h2>
+        <p id="msg">"A alegria está no coração de quem ama."</p>
+    </div>
 
-        <main>
-            <div class="moldura-foto">
-                <img src="https://cursinhoparamedicina.com.br/wp-content/uploads/2016/10/smile.png" id="img-principal" alt="Smile">
-            </div>
-            
-            <div class="painel-texto">
-                <p id="texto-principal">"O sorriso é a janela da alma. Abra a sua hoje!"</p>
-                <button id="btn-sorte" onclick="mudarTexto()">Clique para ver sua sorte!</button>
-            </div>
-
-            <div class="contador-visitas">
-                Visitante nº: <span id="contador">000.452</span>
-            </div>
-        </main>
-
-        <footer>
-            <p>© 2004 - Todos os direitos reservados à Luz e Paz</p>
-        </footer>
+    <div id="horror-overlay" style="display:none;">
+        <div id="texto-ritual"></div>
+        <img src="https://i.imgur.com/NIu-B51_rp0.jpg" id="smiledog">
     </div>
 
     <script src="script.js"></script>
